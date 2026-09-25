@@ -2,12 +2,45 @@ import { store } from '../state/store';
 
 export function renderOrganisationPanel(container: HTMLElement) {
   const state = store.getState();
+
+  const previousNameInput = container.querySelector<HTMLInputElement>('.add-role-form input[type="text"]');
+  const hadFocus = document.activeElement === previousNameInput;
+
   container.innerHTML = '';
 
   const panelTitle = document.createElement('h2');
   panelTitle.className = 'panel-title';
   panelTitle.textContent = 'Organisation';
   container.appendChild(panelTitle);
+
+  const addHeading = document.createElement('h3');
+  addHeading.className = 'section-title';
+  addHeading.textContent = 'Add role';
+  container.appendChild(addHeading);
+
+  const addForm = document.createElement('form');
+  addForm.className = 'add-role-form';
+  const addInput = document.createElement('input');
+  addInput.type = 'text';
+  addInput.placeholder = 'New role under organisation';
+  const addBtn = document.createElement('button');
+  addBtn.type = 'submit';
+  addBtn.textContent = 'Add role';
+  addForm.append(addInput, addBtn);
+  addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = addInput.value.trim();
+    if (!title) return;
+    store.addRole(title, null);
+    addInput.value = '';
+  });
+  container.appendChild(addForm);
+
+  if (hadFocus) addInput.focus();
+
+  const divider = document.createElement('hr');
+  divider.className = 'panel-divider';
+  container.appendChild(divider);
 
   const detailsHeading = document.createElement('h3');
   detailsHeading.className = 'section-title';

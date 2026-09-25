@@ -34,7 +34,7 @@ export function renderRolePanel(container: HTMLElement) {
   addForm.className = 'add-role-form';
   const addInput = document.createElement('input');
   addInput.type = 'text';
-  addInput.placeholder = 'New role title';
+  addInput.placeholder = role ? `New role under ${role.title}` : 'New role under organisation';
   const addBtn = document.createElement('button');
   addBtn.type = 'submit';
   addBtn.textContent = 'Add role';

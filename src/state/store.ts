@@ -102,18 +102,17 @@ class Store {
     this.emit();
   }
 
-  addRole(title: string, parentId: string | null = null): Role {
+  addRole(title: string, parentId?: string | null): Role {
+    const targetParentId = parentId !== undefined ? parentId : this.selectedRoleId;
     const role: Role = {
       id: createId(),
       title,
-      parentId,
+      parentId: targetParentId,
       personId: null,
       responsibilityIds: [],
-      hasBeenNested: parentId !== null,
+      hasBeenNested: targetParentId !== null,
     };
     this.state = { ...this.state, roles: [...this.state.roles, role] };
-    this.selectedRoleId = role.id;
-    this.organisationSelected = false;
     this.emit();
     return role;
   }
