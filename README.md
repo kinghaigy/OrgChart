@@ -6,6 +6,8 @@ A local-only, browser-based organisation chart builder. No external network
 resources are used at runtime — everything (UI, responsibility catalog, saved data)
 runs from the files you host or open locally.
 
+Try it here: https://kinghaigy.github.io/OrgChart/
+
 ## Features
 
 - **Fixed-Spacing Tree Layout**: Automatically computed hierarchical tree rendered on an interactive canvas with SVG connector lines.

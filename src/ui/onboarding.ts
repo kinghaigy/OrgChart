@@ -21,7 +21,7 @@ export function showOnboardingModal(): void {
   box.innerHTML = `
     <div class="onboarding-header">
       <div class="onboarding-brand">
-        <img src="/favicon.svg" alt="" width="36" height="36" />
+        <img src="./favicon.svg" alt="" width="36" height="36" />
         <h2>Welcome to Just Org Charts</h2>
       </div>
       <p class="onboarding-tagline">Who does what around here anyway?</p>
