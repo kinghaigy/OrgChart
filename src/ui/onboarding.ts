@@ -70,8 +70,9 @@ export function showOnboardingModal(): void {
             Drag someone onto a role card to assign them. Click any person's name to view their complete deduplicated responsibilities list.
           </li>
           <li>
-            <strong>Print & Export:</strong> Use <em>Export JSON</em> in the top bar to save backup files to your drive, and
-            <em>Print</em> to generate a clean, one-page chart followed by detailed employee responsibility breakdowns.
+            <strong>Print & Export:</strong> Use <em>Export Image</em> to save your chart as a high-resolution PNG or vector SVG,
+            <em>Export JSON</em> for complete data backups, and <em>Print</em> to print just the roles and responsibilities per person
+            or the chart.
           </li>
         </ol>
       </section>

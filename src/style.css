@@ -571,6 +571,80 @@ button.danger {
   gap: 8px;
 }
 
+/* Dialog / Choice Modal Styles */
+.modal-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.modal-subtitle {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.dialog-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dialog-radio-option {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dialog-radio-option:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+}
+
+.dialog-radio-option input[type='radio'] {
+  width: auto;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.dialog-radio-text {
+  flex: 1;
+}
+
+.dialog-radio-text strong {
+  display: block;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.dialog-radio-text p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.btn-confirm {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: 1px solid #1d4ed8 !important;
+  font-weight: 600;
+}
+
+.btn-confirm:hover {
+  background: #1d4ed8 !important;
+}
+
 /* Onboarding Modal */
 .onboarding-box {
   max-width: 680px;

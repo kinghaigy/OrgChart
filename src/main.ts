@@ -10,6 +10,8 @@ import { promptModal } from './ui/modal';
 import { buildPrintView } from './print/printBuild';
 import { createViewportController } from './chart/viewport';
 import { hasSeenOnboarding, showOnboardingModal } from './ui/onboarding';
+import { showPrintModal } from './ui/printModal';
+import { showExportImageModal } from './ui/exportImageModal';
 
 const canvasEl = document.getElementById('canvas') as HTMLElement;
 const canvasWrapperEl = document.getElementById('canvas-wrapper') as HTMLElement;
@@ -47,6 +49,7 @@ for (const btn of tabButtons) {
 // Toolbar actions
 document.getElementById('btn-fit-view')?.addEventListener('click', () => viewport.fitAll());
 document.getElementById('btn-reset-view')?.addEventListener('click', () => viewport.resetView());
+document.getElementById('btn-export-image')?.addEventListener('click', () => showExportImageModal());
 document.getElementById('btn-export')?.addEventListener('click', () => exportJson());
 
 const importInput = document.getElementById('import-file-input') as HTMLInputElement;
@@ -62,8 +65,10 @@ importInput.addEventListener('change', () => {
 });
 
 document.getElementById('btn-print')?.addEventListener('click', () => {
-  buildPrintView();
-  window.print();
+  showPrintModal((mode) => {
+    buildPrintView(mode);
+    window.print();
+  });
 });
 
 document.getElementById('btn-help')?.addEventListener('click', () => {
