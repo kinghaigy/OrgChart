@@ -52,6 +52,7 @@ export function showOnboardingModal(): void {
           <li>
             <strong>Add & Structure Roles:</strong> Type a title into the <em>Roles</em> panel on the right and press Enter.
             Drag any role card on the canvas onto another role to nest it beneath it, or onto the organisation icon at the top.
+            You can also copy and paste any selected role with <strong>Ctrl+C</strong> and <strong>Ctrl+V</strong> (or <strong>Cmd+C</strong> / <strong>Cmd+V</strong>) to duplicate it along with all of its assigned responsibilities.
           </li>
           <li>
             <strong>Navigate the Canvas:</strong> Click and drag empty space on the canvas background to pan around. Use your

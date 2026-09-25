@@ -77,7 +77,6 @@ document.getElementById('btn-help')?.addEventListener('click', () => {
 
 // Keyboard shortcuts
 window.addEventListener('keydown', (e) => {
-  if (e.key !== 'Delete' && e.key !== 'Backspace') return;
   if (document.querySelector('.modal-overlay')) return;
   const target = e.target as HTMLElement | null;
   const active = document.activeElement as HTMLElement | null;
@@ -87,9 +86,35 @@ window.addEventListener('keydown', (e) => {
   ) {
     return;
   }
-  if (store.selectedRoleId) {
-    e.preventDefault();
-    promptDeleteRole(store.selectedRoleId);
+
+  // Delete selected role
+  if (e.key === 'Delete' || e.key === 'Backspace') {
+    if (store.selectedRoleId) {
+      e.preventDefault();
+      promptDeleteRole(store.selectedRoleId);
+    }
+    return;
+  }
+
+  const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+
+  // Copy selected role (Ctrl+C / Cmd+C)
+  if (isCtrlOrCmd && (e.key.toLowerCase() === 'c' || e.code === 'KeyC')) {
+    const hasSelection = !!window.getSelection()?.toString();
+    if (!hasSelection && store.selectedRoleId) {
+      e.preventDefault();
+      store.copyRole(store.selectedRoleId);
+    }
+    return;
+  }
+
+  // Paste copied role (Ctrl+V / Cmd+V)
+  if (isCtrlOrCmd && (e.key.toLowerCase() === 'v' || e.code === 'KeyV')) {
+    if (store.hasCopiedRole()) {
+      e.preventDefault();
+      store.pasteRole();
+    }
+    return;
   }
 });
 

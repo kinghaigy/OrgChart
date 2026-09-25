@@ -51,6 +51,7 @@ function loadFromStorage(): OrgChartState {
 class Store {
   private state: OrgChartState = loadFromStorage();
   private listeners = new Set<Listener>();
+  private roleClipboard: { title: string; responsibilityIds: string[]; parentId: string | null } | null = null;
   selectedRoleId: string | null = this.state.roles[0]?.id ?? null;
   organisationSelected = false;
 
@@ -123,6 +124,78 @@ class Store {
       roles: this.state.roles.map((r) => (r.id === id ? { ...r, title } : r)),
     };
     this.emit();
+  }
+
+  copyRole(id?: string | null): boolean {
+    const targetId = id ?? this.selectedRoleId;
+    if (!targetId) return false;
+    const role = this.state.roles.find((r) => r.id === targetId);
+    if (!role) return false;
+    this.roleClipboard = {
+      title: role.title,
+      responsibilityIds: [...role.responsibilityIds],
+      parentId: role.parentId,
+    };
+    try {
+      sessionStorage.setItem('orgchart:role_clipboard', JSON.stringify(this.roleClipboard));
+    } catch {
+      // Ignore storage errors in private/sandboxed browsing
+    }
+    return true;
+  }
+
+  hasCopiedRole(): boolean {
+    if (this.roleClipboard) return true;
+    try {
+      const stored = sessionStorage.getItem('orgchart:role_clipboard');
+      if (stored) {
+        this.roleClipboard = JSON.parse(stored);
+        return true;
+      }
+    } catch {
+      // Ignore parsing errors
+    }
+    return false;
+  }
+
+  pasteRole(): Role | null {
+    if (!this.hasCopiedRole() || !this.roleClipboard) return null;
+
+    const parentStillExists =
+      this.roleClipboard.parentId !== null &&
+      this.state.roles.some((r) => r.id === this.roleClipboard!.parentId);
+    const parentId = parentStillExists ? this.roleClipboard.parentId : null;
+
+    const role: Role = {
+      id: createId(),
+      title: this.roleClipboard.title,
+      parentId,
+      personId: null,
+      responsibilityIds: [...this.roleClipboard.responsibilityIds],
+      hasBeenNested: parentId !== null,
+    };
+
+    // Ensure any copied responsibilities are also tracked in organisation if needed
+    let organisation = this.state.organisation;
+    const untracked = role.responsibilityIds.filter(
+      (rId) => !organisation.trackedResponsibilityIds.includes(rId),
+    );
+    if (untracked.length > 0) {
+      organisation = {
+        ...organisation,
+        trackedResponsibilityIds: [...organisation.trackedResponsibilityIds, ...untracked],
+      };
+    }
+
+    this.state = {
+      ...this.state,
+      roles: [...this.state.roles, role],
+      organisation,
+    };
+    this.selectedRoleId = role.id;
+    this.organisationSelected = false;
+    this.emit();
+    return role;
   }
 
   /** Deletes a role and reassigns its direct children to its parent (children are not orphaned). */

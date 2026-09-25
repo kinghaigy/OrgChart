@@ -13,6 +13,7 @@ Try it here: https://kinghaigy.github.io/OrgChart/
 - **Fixed-Spacing Tree Layout**: Automatically computed hierarchical tree rendered on an interactive canvas with SVG connector lines.
 - **Top-Tier Organisation Node**: An organisation root node connects to top-tier roles and tracks required business responsibilities.
 - **Interactive Drag & Reparenting**: Drag any role (along with its entire subtree and connectors) onto another role to nest it. Roles can be placed on the top tier under the organisation, but once nested beneath another role, they lock into the chart hierarchy.
+- **Copy & Paste Roles**: Duplicate any selected role along with all of its assigned responsibilities using **Ctrl+C** and **Ctrl+V** (or **Cmd+C** / **Cmd+V** on Mac).
 - **Pannable & Zoomable Canvas**: Pan by dragging the canvas background and zoom with the mouse wheel (anchored under the cursor and cleanly snapped at 100% to avoid font blurring). Includes **Fit all** and **Reset view** buttons, with viewport coordinates saved between sessions.
 - **Dynamic Card Sizing**: Role and organisation cards automatically expand horizontally to fit longer titles without unnecessary text clipping.
 - **Built-in & Custom Responsibilities**: Comprehensive, multi-tag catalog of 200+ industry responsibilities (Agriculture, Livestock, Management, Finance, Operations, Tech, etc.) plus support for user-created custom responsibilities with tags and deletion.
