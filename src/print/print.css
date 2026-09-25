@@ -1,0 +1,66 @@
+@media print {
+  @page {
+    size: landscape;
+    margin: 12mm;
+  }
+
+  #app {
+    display: none !important;
+  }
+
+  #print-root {
+    display: block !important;
+  }
+
+  .print-chart-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    page-break-after: always;
+  }
+
+  .print-chart-box {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .print-chart-clone {
+    position: relative !important;
+  }
+
+  .print-chart-clone .role-node {
+    box-shadow: none !important;
+  }
+
+  .print-people-page h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .print-person {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 14px;
+  }
+
+  .print-person h2 {
+    font-size: 16px;
+    margin: 0 0 2px;
+  }
+
+  .print-person-roles {
+    font-size: 13px;
+    color: #555;
+    margin: 0 0 4px;
+    font-style: italic;
+  }
+
+  .print-person ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+}
+

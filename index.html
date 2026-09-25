@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
+    <meta name="description" content="Just Org Charts — Who does what around here anyway?" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Just Org Charts</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/print/print.css" media="print" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="toolbar">
+        <div id="brand">
+          <img id="brand-icon" src="/favicon.svg" alt="" width="40" height="40" />
+          <div id="brand-copy">
+            <h1 id="app-title">Just Org Charts</h1>
+            <p id="tagline">Who does what around here anyway?</p>
+          </div>
+        </div>
+        <div id="toolbar-actions">
+          <button id="btn-fit-view" type="button">Fit all</button>
+          <button id="btn-reset-view" type="button">Reset view</button>
+          <button id="btn-export" type="button">Export JSON</button>
+          <button id="btn-import" type="button">Import JSON</button>
+          <input id="import-file-input" type="file" accept="application/json" hidden />
+          <button id="btn-print" type="button">Print</button>
+          <button id="btn-help" type="button">Help</button>
+        </div>
+      </header>
+      <main id="main">
+        <section id="canvas-wrapper">
+          <div id="canvas"></div>
+        </section>
+        <aside id="sidepanel">
+          <div id="sidepanel-tabs">
+            <button class="tab-btn active" data-tab="role" type="button">Roles</button>
+            <button class="tab-btn" data-tab="responsibilities" type="button">Responsibilities</button>
+            <button class="tab-btn" data-tab="people" type="button">People</button>
+          </div>
+          <div id="sidepanel-content">
+            <div id="tab-role" class="tab-pane active"></div>
+            <div id="tab-responsibilities" class="tab-pane"></div>
+            <div id="tab-people" class="tab-pane"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+    <div id="print-root"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Just Org Charts">
+  <rect width="64" height="64" rx="12" fill="#ffffff"/>
+  <path d="M32 25v8M16 33h32M16 33v7M48 33v7" fill="none" stroke="#1f2937" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="21" y="9" width="22" height="16" rx="4" fill="#2563eb"/>
+  <rect x="6" y="40" width="20" height="15" rx="4" fill="#1f2937"/>
+  <rect x="38" y="40" width="20" height="15" rx="4" fill="#1f2937"/>
+</svg>
