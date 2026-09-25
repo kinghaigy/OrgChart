@@ -42,7 +42,7 @@ export function showOnboardingModal(): void {
         <p>I could only find basic diagramming tools and paid solutions with extensive features and integration into other enterprise grade software systems.</p>
         <p>I wanted a tool any small or medium sized team could use without friction and be fast. No logging in, no paywalls, no accounts.</p>
         <p>This comes with the disadvantage that there's no server storing your information. It lives ONLY in your browser on this computer and in the JSON file you export.</p>
-        <p>Let me know on GitHub if you have any default roles or responsibilities you think should be included.</p>
+        <p>Let me know on <a href="https://github.com/kinghaigy/OrgChart/issues" target="_blank">GitHub</a> if you have any default roles or responsibilities you think should be included.</p>
         <p>Have fun!</p>
       </section>
 

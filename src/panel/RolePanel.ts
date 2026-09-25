@@ -1,6 +1,15 @@
 import { store } from '../state/store';
 import { confirmModal } from '../ui/modal';
 
+export async function promptDeleteRole(roleId: string) {
+  const state = store.getState();
+  const role = state.roles.find((r) => r.id === roleId);
+  if (!role) return;
+  if (await confirmModal(`Delete "${role.title}"? Its children will be reattached to its parent.`)) {
+    store.deleteRole(role.id);
+  }
+}
+
 export function renderRolePanel(container: HTMLElement) {
   const state = store.getState();
   const roleId = store.selectedRoleId;
@@ -72,10 +81,8 @@ export function renderRolePanel(container: HTMLElement) {
   deleteBtn.type = 'button';
   deleteBtn.className = 'danger';
   deleteBtn.textContent = 'Delete role';
-  deleteBtn.addEventListener('click', async () => {
-    if (await confirmModal(`Delete "${role.title}"? Its children will be reattached to its parent.`)) {
-      store.deleteRole(role.id);
-    }
+  deleteBtn.addEventListener('click', () => {
+    promptDeleteRole(role.id);
   });
   container.appendChild(deleteBtn);
 

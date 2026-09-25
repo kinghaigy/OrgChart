@@ -1,7 +1,7 @@
 import './style.css';
 import { store } from './state/store';
 import { renderChart } from './chart/ChartRenderer';
-import { renderRolePanel } from './panel/RolePanel';
+import { renderRolePanel, promptDeleteRole } from './panel/RolePanel';
 import { renderOrganisationPanel } from './panel/OrganisationPanel';
 import { renderResponsibilityLibraryPanel } from './panel/ResponsibilityLibraryPanel';
 import { renderPeoplePanel } from './panel/PeoplePanel';
@@ -73,6 +73,24 @@ document.getElementById('btn-print')?.addEventListener('click', () => {
 
 document.getElementById('btn-help')?.addEventListener('click', () => {
   showOnboardingModal();
+});
+
+// Keyboard shortcuts
+window.addEventListener('keydown', (e) => {
+  if (e.key !== 'Delete' && e.key !== 'Backspace') return;
+  if (document.querySelector('.modal-overlay')) return;
+  const target = e.target as HTMLElement | null;
+  const active = document.activeElement as HTMLElement | null;
+  if (
+    (target && (target.closest('input, textarea, select') || target.isContentEditable)) ||
+    (active && (active.closest('input, textarea, select') || active.isContentEditable))
+  ) {
+    return;
+  }
+  if (store.selectedRoleId) {
+    e.preventDefault();
+    promptDeleteRole(store.selectedRoleId);
+  }
 });
 
 // Show onboarding modal on first load if never dismissed

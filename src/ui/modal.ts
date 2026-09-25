@@ -85,14 +85,24 @@ export function confirmModal(message: string): Promise<boolean> {
     document.body.appendChild(overlay);
 
     function close(result: boolean) {
+      document.removeEventListener('keydown', onKey);
       document.body.removeChild(overlay);
       resolve(result);
     }
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        close(false);
+      }
+    }
+    document.addEventListener('keydown', onKey);
 
     cancelBtn.addEventListener('click', () => close(false));
     okBtn.addEventListener('click', () => close(true));
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) close(false);
     });
+
+    okBtn.focus();
   });
 }
